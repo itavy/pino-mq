@@ -13,7 +13,7 @@
  },
  "repository": {
   "type": "git",
-  "url": "git+ssh://git@github.com/itavy/pino-mq.git"
+  "url": "git+https://git@github.com/itavy/pino-mq.git"
  },
  "keywords": [
   "pino",
@@ -40,5 +40,8 @@
   "jsdoc": "^3.5.3",
   "jsdoc-to-markdown": "^3.0.0",
   "pre-commit": "^1.2.2"
+ },
+ "dependencies": {
+  "semver": "^5.4.1"
  }
 }
