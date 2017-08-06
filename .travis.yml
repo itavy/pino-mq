@@ -12,3 +12,4 @@ services:
 script:
   - npm run coverage
   - npm run coverage:check
+  - ./test/e2e/RabbitMQConfig.sh
