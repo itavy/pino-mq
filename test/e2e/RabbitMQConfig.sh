@@ -1,8 +1,13 @@
 #!/usr/bin/env bash
-MQ_USER="guest";
-MQ_PASS="guest";
+MQ_USER="pinomqusr";
+MQ_PASS="pinomqpwd";
 MQ_HOST="localhost";
-MQ_VHOST="/";
+MQ_VHOST="pino-mq";
+
+rabbitmqctl add_vhost $MQ_VHOST;
+rabbitmqctl add_user "$MQ_USER" "$MQ_PASS";
+rabbitmqctl set_user_tags "$MQ_USER" "management";
+rabbitmqctl set_permissions -p "$MQ_VHOST" "$MQ_USER" ".*" ".*" ".*";
 
 MQ_EXCHANGE="pinoMQExchange";
 
