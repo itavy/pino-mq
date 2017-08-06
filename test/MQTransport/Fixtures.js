@@ -17,7 +17,10 @@ const filterFields = [
 const mockExchange = 'mockExchange';
 const mockQueue = 'mockQueue';
 const mockQueuePattern = 'mockQueue.';
-const mockQueueMap = {};
+const mockQueueMap = {
+  20:      'mockQueueMap20',
+  default: 'mockQueueMapDefault',
+};
 
 const messageTest = {
   pid:      process.pid,
