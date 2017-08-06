@@ -4,39 +4,34 @@ MQ_PASS="pinomqpwd";
 MQ_HOST="localhost";
 MQ_VHOST="pino-mq";
 
-rabbitmqctl add_vhost $MQ_VHOST;
-rabbitmqctl add_user "$MQ_USER" "$MQ_PASS";
-rabbitmqctl set_user_tags "$MQ_USER" "management";
-rabbitmqctl set_permissions -p "$MQ_VHOST" "$MQ_USER" ".*" ".*" ".*";
-
 MQ_EXCHANGE="pinoMQExchange";
 
 CMD_DECLARE="rabbitmqadmin -u \"$MQ_USER\" -p \"$MQ_PASS\" --vhost=\"$MQ_VHOST\" declare"
 
 # QUEUES
 # queue for testing
-${CMD_DECLARE} queue name="pino-mq-queue" durable=true
+$CMD_DECLARE queue name="pino-mq-queue" durable=true
 
 # pattern queue for testing
-${CMD_DECLARE} queue name="pino-mq-queue-30" durable=true
-${CMD_DECLARE} queue name="pino-mq-queue-35" durable=true
+$CMD_DECLARE queue name="pino-mq-queue-30" durable=true
+$CMD_DECLARE queue name="pino-mq-queue-35" durable=true
 
 # queue maps
-${CMD_DECLARE} queue name="pinomqqueue-30" durable=true
-${CMD_DECLARE} queue name="pinomqqueue-40" durable=true
-${CMD_DECLARE} queue name="pinomqqueue-default" durable=true
+$CMD_DECLARE queue name="pinomqqueue-30" durable=true
+$CMD_DECLARE queue name="pinomqqueue-40" durable=true
+$CMD_DECLARE queue name="pinomqqueue-default" durable=true
 
 
 # TOPICS
 
-${CMD_DECLARE} exchange name="$MQ_EXCHANGE" type="topic";
+$CMD_DECLARE exchange name="$MQ_EXCHANGE" type="topic";
 
 # topic for testing
 MQ_TOPIC_QUEUE="pino-mq-queue-topic";
 MQ_TOPIC="pinoMQTopic";
 
-${CMD_DECLARE} queue  name="$MQ_TOPIC_QUEUE" durable=true
-${CMD_DECLARE} binding source="$MQ_EXCHANGE" destination_type="queue" \
+$CMD_DECLARE queue  name="$MQ_TOPIC_QUEUE" durable=true
+$CMD_DECLARE binding source="$MQ_EXCHANGE" destination_type="queue" \
   destination="$MQ_TOPIC_QUEUE" routing_key="$MQ_TOPIC";
 
 
@@ -48,16 +43,16 @@ MQ_TOPIC1="pinoMQTopic.30";
 MQ_TOPIC2="pinoMQTopic.35";
 MQ_TOPIC3="pinoMQTopic.*";
 
-${CMD_DECLARE} queue  name="$MQ_TOPIC_QUEUE1" durable=true
-${CMD_DECLARE} binding source="$MQ_EXCHANGE" destination_type="queue" \
+$CMD_DECLARE queue  name="$MQ_TOPIC_QUEUE1" durable=true
+$CMD_DECLARE binding source="$MQ_EXCHANGE" destination_type="queue" \
   destination="$MQ_TOPIC_QUEUE1" routing_key="$MQ_TOPIC1";
 
-${CMD_DECLARE} queue  name="$MQ_TOPIC_QUEUE2" durable=true
-${CMD_DECLARE} binding source="$MQ_EXCHANGE" destination_type="queue" \
+$CMD_DECLARE queue  name="$MQ_TOPIC_QUEUE2" durable=true
+$CMD_DECLARE binding source="$MQ_EXCHANGE" destination_type="queue" \
   destination="$MQ_TOPIC_QUEUE2" routing_key="$MQ_TOPIC2";
 
-${CMD_DECLARE} queue  name="$MQ_TOPIC_QUEUE3" durable=true
-${CMD_DECLARE} binding source="$MQ_EXCHANGE" destination_type="queue" \
+$CMD_DECLARE queue  name="$MQ_TOPIC_QUEUE3" durable=true
+$CMD_DECLARE binding source="$MQ_EXCHANGE" destination_type="queue" \
   destination="$MQ_TOPIC_QUEUE3" routing_key="$MQ_TOPIC3";
 
 # topic maps
@@ -69,14 +64,14 @@ MQ_TOPIC1="pinoMQ.Topic.30";
 MQ_TOPIC2="pinoMQ.Topic.default";
 MQ_TOPIC3="pinoMQ.Topic.*";
 
-${CMD_DECLARE} queue  name="$MQ_TOPIC_QUEUE1" durable=true
-${CMD_DECLARE} binding source="$MQ_EXCHANGE" destination_type="queue" \
+$CMD_DECLARE queue  name="$MQ_TOPIC_QUEUE1" durable=true
+$CMD_DECLARE binding source="$MQ_EXCHANGE" destination_type="queue" \
   destination="$MQ_TOPIC_QUEUE1" routing_key="$MQ_TOPIC1";
 
-${CMD_DECLARE} queue  name="$MQ_TOPIC_QUEUE2" durable=true
-${CMD_DECLARE} binding source="$MQ_EXCHANGE" destination_type="queue" \
+$CMD_DECLARE queue  name="$MQ_TOPIC_QUEUE2" durable=true
+$CMD_DECLARE binding source="$MQ_EXCHANGE" destination_type="queue" \
   destination="$MQ_TOPIC_QUEUE2" routing_key="$MQ_TOPIC2";
 
-${CMD_DECLARE} queue  name="$MQ_TOPIC_QUEUE3" durable=true
-${CMD_DECLARE} binding source="$MQ_EXCHANGE" destination_type="queue" \
+$CMD_DECLARE queue  name="$MQ_TOPIC_QUEUE3" durable=true
+$CMD_DECLARE binding source="$MQ_EXCHANGE" destination_type="queue" \
   destination="$MQ_TOPIC_QUEUE3" routing_key="$MQ_TOPIC3";
