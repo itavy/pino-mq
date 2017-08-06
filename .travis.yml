@@ -1,0 +1,14 @@
+sudo: required
+dist: trusty
+
+language: node_js
+
+node_js:
+  - "6"
+
+services:
+  - rabbitmq
+
+script:
+  - npm run coverage
+  - npm run coverage:check
