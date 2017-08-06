@@ -35,11 +35,9 @@ const messageTest = {
 /**
  * tests if provided error has expected name and has cause a specific error
  * @param {Error} error error to be tested
- * @param {String} name expected name
  * @returns {undefined} returns nothing on success
  */
-const testExpectedError = ({ error /* , name */ }) => {
-  // expect(error).to.have.property('name', name);
+const testExpectedError = ({ error }) => {
   expect(error).to.be.equal(testingError);
 };
 
