@@ -6,7 +6,7 @@ MQ_VHOST="pino-mq";
 
 MQ_EXCHANGE="pinoMQExchange";
 
-CMD_DECLARE="rabbitmqadmin -u \"$MQ_USER\" -p \"$MQ_PASS\" --vhost=\"$MQ_VHOST\" declare"
+CMD_DECLARE="rabbitmqadmin -u $MQ_USER -p $MQ_PASS --vhost=$MQ_VHOST declare"
 
 # QUEUES
 # queue for testing
