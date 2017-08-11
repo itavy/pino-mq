@@ -14,12 +14,7 @@ before_script:
   - wget http://guest:guest@localhost:15672/cli/rabbitmqadmin
   - sudo chmod +x rabbitmqadmin
   - sudo mv rabbitmqadmin /usr/local/bin/
-  - sudo rabbitmqctl add_vhost "pino-mq"
-  - sudo rabbitmqctl add_user "pinomqusr" "pinomqpwd"
-  - sudo rabbitmqctl set_user_tags "pinomqusr" "management"
-  - sudo rabbitmqctl set_permissions -p "pino-mq" "pinomqusr" ".*" ".*" ".*"
-
 script:
   - npm run coverage
   - npm run coverage:check
-  - ./test/e2e/RabbitMQConfig.sh
+  - sudo ./test/e2e/RabbitMQConfig.sh

@@ -1,0 +1,244 @@
+{
+  "users":[
+    {
+      "name":"pinomqusr",
+      "password_hash":"NPIrtt9vuU2oZGc+fAnO2M0RajhpkIUzC+MvvO8IdzG2/kHR",
+      "hashing_algorithm":"rabbit_password_hashing_sha256",
+      "tags":"management"
+    },
+    {
+      "name":"guest",
+      "password_hash":"BA0ooX7xvpkqmFBRLYUpvDBP/Ahk5CUKVDk9YNUa6E1kltCh",
+      "hashing_algorithm":"rabbit_password_hashing_sha256",
+      "tags":"administrator"
+    }
+  ],
+  "vhosts":[
+    {
+      "name":"/"
+    },
+    {
+      "name":"pino-mq"
+    }
+  ],
+  "permissions":[
+    {
+      "user":"guest",
+      "vhost":"/",
+      "configure":".*",
+      "write":".*",
+      "read":".*"
+    },
+    {
+      "user":"pinomqusr",
+      "vhost":"pino-mq",
+      "configure":".*",
+      "write":".*",
+      "read":".*"
+    }
+  ],
+  "queues":[
+    {
+      "name":"pino-mq-queue-30",
+      "vhost":"pino-mq",
+      "durable":true,
+      "auto_delete":false,
+      "arguments":{
+
+      }
+    },
+    {
+      "name":"pino-mq-patternqueue-topic-2",
+      "vhost":"pino-mq",
+      "durable":true,
+      "auto_delete":false,
+      "arguments":{
+
+      }
+    },
+    {
+      "name":"pino-mq-patternqueue-topic-1",
+      "vhost":"pino-mq",
+      "durable":true,
+      "auto_delete":false,
+      "arguments":{
+
+      }
+    },
+    {
+      "name":"pinomqqueue-default",
+      "vhost":"pino-mq",
+      "durable":true,
+      "auto_delete":false,
+      "arguments":{
+
+      }
+    },
+    {
+      "name":"pino-mq-queue-topic",
+      "vhost":"pino-mq",
+      "durable":true,
+      "auto_delete":false,
+      "arguments":{
+
+      }
+    },
+    {
+      "name":"pino-mq-queue",
+      "vhost":"pino-mq",
+      "durable":true,
+      "auto_delete":false,
+      "arguments":{
+
+      }
+    },
+    {
+      "name":"pino-mq-mapqueue-topic-2",
+      "vhost":"pino-mq",
+      "durable":true,
+      "auto_delete":false,
+      "arguments":{
+
+      }
+    },
+    {
+      "name":"pino-mq-queue-35",
+      "vhost":"pino-mq",
+      "durable":true,
+      "auto_delete":false,
+      "arguments":{
+
+      }
+    },
+    {
+      "name":"pinomqqueue-40",
+      "vhost":"pino-mq",
+      "durable":true,
+      "auto_delete":false,
+      "arguments":{
+
+      }
+    },
+    {
+      "name":"pino-mq-mapqueue-topic-3",
+      "vhost":"pino-mq",
+      "durable":true,
+      "auto_delete":false,
+      "arguments":{
+
+      }
+    },
+    {
+      "name":"pino-mq-mapqueue-topic-1",
+      "vhost":"pino-mq",
+      "durable":true,
+      "auto_delete":false,
+      "arguments":{
+
+      }
+    },
+    {
+      "name":"pino-mq-patternqueue-topic-3",
+      "vhost":"pino-mq",
+      "durable":true,
+      "auto_delete":false,
+      "arguments":{
+
+      }
+    },
+    {
+      "name":"pinomqqueue-30",
+      "vhost":"pino-mq",
+      "durable":true,
+      "auto_delete":false,
+      "arguments":{
+
+      }
+    }
+  ],
+  "exchanges":[
+    {
+      "name":"pinoMQExchange",
+      "vhost":"pino-mq",
+      "type":"topic",
+      "durable":true,
+      "auto_delete":false,
+      "internal":false,
+      "arguments":{
+
+      }
+    }
+  ],
+  "bindings":[
+    {
+      "source":"pinoMQExchange",
+      "vhost":"pino-mq",
+      "destination":"pino-mq-mapqueue-topic-3",
+      "destination_type":"queue",
+      "routing_key":"pinoMQ.Topic.*",
+      "arguments":{
+
+      }
+    },
+    {
+      "source":"pinoMQExchange",
+      "vhost":"pino-mq",
+      "destination":"pino-mq-mapqueue-topic-1",
+      "destination_type":"queue",
+      "routing_key":"pinoMQ.Topic.30",
+      "arguments":{
+
+      }
+    },
+    {
+      "source":"pinoMQExchange",
+      "vhost":"pino-mq",
+      "destination":"pino-mq-mapqueue-topic-2",
+      "destination_type":"queue",
+      "routing_key":"pinoMQ.Topic.default",
+      "arguments":{
+
+      }
+    },
+    {
+      "source":"pinoMQExchange",
+      "vhost":"pino-mq",
+      "destination":"pino-mq-queue-topic",
+      "destination_type":"queue",
+      "routing_key":"pinoMQTopic",
+      "arguments":{
+
+      }
+    },
+    {
+      "source":"pinoMQExchange",
+      "vhost":"pino-mq",
+      "destination":"pino-mq-patternqueue-topic-3",
+      "destination_type":"queue",
+      "routing_key":"pinoMQTopic.*",
+      "arguments":{
+
+      }
+    },
+    {
+      "source":"pinoMQExchange",
+      "vhost":"pino-mq",
+      "destination":"pino-mq-patternqueue-topic-1",
+      "destination_type":"queue",
+      "routing_key":"pinoMQTopic.30",
+      "arguments":{
+
+      }
+    },
+    {
+      "source":"pinoMQExchange",
+      "vhost":"pino-mq",
+      "destination":"pino-mq-patternqueue-topic-2",
+      "destination_type":"queue",
+      "routing_key":"pinoMQTopic.35",
+      "arguments":{
+
+      }
+    }
+  ]
+}
