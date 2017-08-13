@@ -1,9 +1,7 @@
 'use strict';
 
 const tap = require('tap');
-const amqp = require('amqplib');
 const fixtures = require('./Fixtures');
-const getTransport = require('../../lib').getTransport;
 
 tap.test('Single queue', (t) => {
   t.plan(1);
@@ -11,29 +9,26 @@ tap.test('Single queue', (t) => {
   let checkConn;
 
   // eslint-disable-next-line require-jsdoc
-  const receiveMessage = (qMessage) => {
-    const message = JSON.parse(qMessage.content.toString());
+  const receiveMessage = ({ message }) => {
     t.equal(message, fixtures.testMessages.singleQueue);
     checkConn.close()
       .then(() => testTransport.close());
   };
 
-
-  amqp.connect(fixtures.rabbitMQURI)
-    .then((conn) => {
+  fixtures.setupTestConn({
+    definitions: [
+      {
+        queue: fixtures.tests.subscribeQueue.queue,
+        cb:    receiveMessage,
+      },
+    ],
+    config: {
+      queue: fixtures.tests.subscribeQueue.queue,
+    },
+  })
+    .then(({ conn, transport }) => {
       checkConn = conn;
-      conn.createChannel()
-        .then(ch => ch.consume(fixtures.tests.subscribeQueue.queue,
-          receiveMessage, { noAck: true }))
-        .then(() => {
-          testTransport = getTransport({
-            type:            'RABBITMQ',
-            queue:           fixtures.tests.subscribeQueue.queue,
-            transportParams: {
-              uri: fixtures.rabbitMQURI,
-            },
-          });
-          testTransport.write(fixtures.testMessages.singleQueue, null, () => null);
-        });
+      testTransport = transport;
+      testTransport.write(fixtures.testMessages.singleQueue, null, () => null);
     });
 });
