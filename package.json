@@ -36,7 +36,7 @@
   },
   "homepage": "https://github.com/itavy/pino-mq#readme",
   "devDependencies": {
-    "@itavy/test-utilities": "^2.0.0",
+    "@itavy/test-utilities": "^2.1.0",
     "eslint": "^4.3.0",
     "eslint-config-airbnb": "^15.1.0",
     "eslint-plugin-import": "^2.7.0",
@@ -46,8 +46,7 @@
     "jaguarjs-jsdoc": "^1.1.0",
     "jsdoc": "^3.5.3",
     "jsdoc-to-markdown": "^3.0.0",
-    "pre-commit": "^1.2.2",
-    "tap": "^10.7.2"
+    "pre-commit": "^1.2.2"
   },
   "dependencies": {
     "amqplib": "^0.5.1",
