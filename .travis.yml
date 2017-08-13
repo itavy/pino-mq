@@ -17,4 +17,4 @@ before_script:
 script:
   - npm run coverage
   - npm run coverage:check
-  - sudo ./test/e2e/RabbitMQConfig.sh
+  - npm run test:e2e-prereq

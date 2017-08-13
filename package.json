@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "./node_modules/.bin/mocha",
+    "test:e2e-prereq": "rabbitmqadmin import ./test/Docker/rabbitmq-definitions.json",
     "test:e2e": "npm run test:check-style && ./node_modules/.bin/mocha --opts ./test/e2e/mocha.opts",
     "test:e2e-tap": "npm run test:check-style && ./node_modules/.bin/tap -b ./test/e2e/index.js",
     "coverage": "npm run test:check-style && ./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha",
