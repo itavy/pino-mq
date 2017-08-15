@@ -18,5 +18,5 @@ before_script:
 script:
   - npm run coverage
   - npm run coverage:check
-  - npm run test:e2e-prereq
+  - npm run test:e2e:prereq
   - npm run test:e2e
