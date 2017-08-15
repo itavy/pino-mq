@@ -51,6 +51,7 @@
   "dependencies": {
     "amqplib": "^0.5.1",
     "fast-safe-stringify": "^1.2.0",
+    "nopt": "^4.0.1",
     "pump": "^1.0.2",
     "semver": "^5.4.1",
     "split2": "^2.1.1",
