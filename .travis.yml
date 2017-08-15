@@ -14,8 +14,9 @@ before_script:
   - wget http://guest:guest@localhost:15672/cli/rabbitmqadmin
   - sudo chmod +x rabbitmqadmin
   - sudo mv rabbitmqadmin /usr/local/bin/
+
 script:
   - npm run coverage
   - npm run coverage:check
   - npm run test:e2e-prereq
-  - npm run test:e2e-tap
+  - npm run test:e2e

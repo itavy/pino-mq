@@ -5,7 +5,7 @@ const helpersLib = require('../../lib/Helpers');
 
 const expect = testUtilities.getExpect();
 
-describe('TryStringify', () => {
+describe('ValidateMqSettings', () => {
   it('Should not validate', (done) => {
     const msgError = 'You must provide at least queue or queuePatern or queueMap.';
     expect(() => helpersLib.validateMqSettings({})).to.throw(msgError);

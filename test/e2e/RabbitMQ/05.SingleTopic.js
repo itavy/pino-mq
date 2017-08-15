@@ -3,7 +3,7 @@
 const tap = require('@itavy/test-utilities').getTap();
 const fixtures = require('./Fixtures');
 
-tap.test('Single queue', (t) => {
+tap.test('Single Topic', (t) => {
   let testTransport;
   let checkConn;
   t.plan(1);
@@ -14,17 +14,17 @@ tap.test('Single queue', (t) => {
 
   // eslint-disable-next-line require-jsdoc
   const receiveMessage = ({ message }) => {
-    t.equal(message, fixtures.testMessages.singleQueue);
+    t.same(message, fixtures.testMessages.singleQueue);
   };
 
   fixtures.setupTestConn({
     definitions: [
       {
-        queue: fixtures.testsQueues.singleQueue.queue,
+        queue: fixtures.testsQueues.singleTopic.queue,
         cb:    receiveMessage,
       },
     ],
-    config: fixtures.testsConfig.subscribeQueue,
+    config: fixtures.testsConfig.singleTopic,
   })
     .then(({ conn, transport }) => {
       checkConn = conn;

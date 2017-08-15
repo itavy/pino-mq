@@ -1,13 +1,13 @@
 'use strict';
 
 const amqp = require('amqplib');
-const getTransport = require('../../../lib/index').getTransport;
+const getTransport = require('../../../../lib/index').getTransport;
 
 const rabbitMQURI = 'amqp://pinomqusr:pinomqpwd@localhost/pino-mq';
 const rabbitMQExchange = 'pinoMQExchange';
 
 const testsConfig = {
-  subscribeQueue: {
+  singleQueue: {
     queue: 'pino-mq-queue',
   },
   filterFields: {
@@ -24,11 +24,26 @@ const testsConfig = {
       40:      'pinomqqueue-40',
     },
   },
+  singleTopic: {
+    exchange: 'pinoMQExchange',
+    queue:    'pinoMQTopic',
+  },
+  patternTopic: {
+    queuePattern: 'pinoMQTopic.',
+    exchange:     'pinoMQExchange',
+  },
+  mapTopic: {
+    exchange: 'pinoMQExchange',
+    queueMap: {
+      default: 'pinoMQ.Topic.default',
+      30:      'pinoMQ.Topic.30',
+    },
+  },
 };
 
 const testsQueues = {
   singleQueue: {
-    queue: testsConfig.subscribeQueue.queue,
+    queue: testsConfig.singleQueue.queue,
   },
   filterFields: {
     queue: 'pino-mq-queue',
@@ -42,22 +57,42 @@ const testsQueues = {
     30:      testsConfig.mapQueue.queueMap[30],
     40:      testsConfig.mapQueue.queueMap[40],
   },
+  singleTopic: {
+    queue: 'pino-mq-queue-topic',
+  },
+  patternTopic: {
+    queue30: 'pino-mq-patternqueue-topic-1',
+    topic30: `${testsConfig.patternTopic.queuePattern}30`,
+    queue35: 'pino-mq-patternqueue-topic-2',
+    topic35: `${testsConfig.patternTopic.queuePattern}35`,
+  },
+  mapTopic: {
+    default:      'pino-mq-mapqueue-topic-2',
+    topicDefault: testsConfig.mapTopic.queueMap.default,
+    30:           'pino-mq-mapqueue-topic-1',
+    topic30:      testsConfig.mapTopic.queueMap[30],
+  },
 };
 
 const testMessages = {
-  singleQueue:  'Testing Message',
+  singleQueue: {
+    level:     30,
+    msg:       'Testing Message',
+    timestamp: Date.now(),
+    v:         1,
+  },
   filterFields: {
     orig: {
       level:     30,
       msg:       'Testing Message 30',
-      timestamp: 123456789,
+      timestamp: Date.now(),
       extra:     true,
       v:         1,
     },
     received: {
       level:     30,
       msg:       'Testing Message 30',
-      timestamp: 123456789,
+      timestamp: Date.now(),
     },
   },
   patternQueue: {

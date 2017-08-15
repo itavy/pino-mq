@@ -1,5 +1,0 @@
--u exports
--R spec
-./test/e2e/index.js
--t 3000
--b
