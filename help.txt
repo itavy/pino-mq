@@ -6,5 +6,6 @@
   -qp | --queuePattern      queuePattern  to be used for sending messages
   -f  | --fields            comma separated fields for filtering messages before sending
   -c  | --config            path to config file (JSON); switches take precedence
+  -g  | --generateConfig    create pino-mq.json config file with default options
   -h  | --help              Display Help
   -v  | --version           display Version
