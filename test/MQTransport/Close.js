@@ -33,4 +33,15 @@ describe('Close', () => {
 
     return done();
   });
+
+  it('if no callback provided it should provide a dummy one', (done) => {
+    const transportCloseSpy = sandbox.spy(fixtures.mockTransport, 'close');
+
+    testTransport.close();
+
+    expect(transportCloseSpy.callCount).to.be.equal(1);
+    expect(transportCloseSpy.getCall(0).args[0]).to.be.a('function');
+
+    return done();
+  });
 });
