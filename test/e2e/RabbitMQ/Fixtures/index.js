@@ -121,6 +121,34 @@ const testMessages = {
   },
 };
 
+const pinoTestMessages = [
+  {
+    level:   'info',
+    msg:     'msg1',
+    delayed: false,
+  },
+  {
+    level:   'info',
+    msg:     'msg2',
+    delayed: false,
+  },
+  {
+    level:   'error',
+    msg:     'msg3',
+    delayed: false,
+  },
+  {
+    level:   'warn',
+    msg:     'msg4',
+    delayed: false,
+  },
+  {
+    level:   'info',
+    msg:     'msg delayed',
+    delayed: true,
+  },
+];
+
 /**
  * Setup testing connection
  * @param {Object[]} definitions pair of queue and resolvers
@@ -129,7 +157,7 @@ const testMessages = {
  * @param {Object} config transport config
  * @returns {Object} resolves with connection and transport on success
  */
-const setupTestConn = ({ definitions, config }) => new Promise((resolve, reject) =>
+const setupTestConn = ({ definitions, config = null }) => new Promise((resolve, reject) =>
   amqp.connect(rabbitMQURI)
     .then(conn => conn.createChannel()
       .then(ch => Promise.all(definitions.map(el => ch.consume(el.queue, (qMessage) => {
@@ -140,6 +168,12 @@ const setupTestConn = ({ definitions, config }) => new Promise((resolve, reject)
         });
       }, { noAck: true }))))
       .then(() => {
+        if (config === null) {
+          return resolve({
+            transport: null,
+            conn,
+          });
+        }
         const transport = getTransport(Object.assign({
           type:            'RABBITMQ',
           transportParams: {
@@ -160,7 +194,7 @@ const setupTestConn = ({ definitions, config }) => new Promise((resolve, reject)
  * @returns {undefined}
  */
 const closeTestConn = ({ conn, transport }) => conn.close()
-  .then(() => transport.close());
+  .then(() => transport && transport.close());
 
 module.exports = {
   setupTestConn,
@@ -170,4 +204,5 @@ module.exports = {
   testsConfig,
   testsQueues,
   testMessages,
+  pinoTestMessages,
 };
