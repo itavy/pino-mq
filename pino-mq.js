@@ -3,6 +3,7 @@
 'use strict';
 
 const path = require('path');
+// const { PassThrough } = require('stream');
 const fs = require('fs');
 const split = require('split2');
 const pump = require('pump');
@@ -105,9 +106,6 @@ if (configOptions.uri === null) {
   process.exit(1);
 }
 
-
-// process.exit(0);
-
 // eslint-disable-next-line import/no-dynamic-require
 const getMqTransport = require(path.join(__dirname, 'index')).getTransport;
 
@@ -124,22 +122,11 @@ const t = getMqTransport({
   fields:       configOptions.fields,
 });
 
-process.stdin.on('close', () => {
-  console.log('STDIN CLOSE');
-  t.close();
-});
-// process.on('SIGINT', t.close.bind(t));
-process.on('SIGINT', () => {
-  console.log('SIGINT CLOSE');
-  t.close();
-});
-process.on('SIGTERM', () => {
-  console.log('SIGTERM CLOSE');
-  t.close();
-});
+process.stdin.on('close', t.close.bind(t));
+process.on('SIGINT', t.close.bind(t));
+process.on('SIGTERM', t.close.bind(t));
 
 pump(
   process.stdin,
   split(JSON.parse),
-  through.obj(t.write.bind(t)));
-// through.obj(t.write.bind(t), t.close.bind(t)));
+  through.obj(t.write.bind(t), t.close.bind(t)));

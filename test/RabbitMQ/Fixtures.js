@@ -3,7 +3,8 @@
 const expect = require('@itavy/test-utilities').getExpect();
 
 const amqpChannelMock = {
-  publish: () => true,
+  publish:         () => true,
+  waitForConfirms: () => Promise.resolve(),
 };
 
 const amqpConnectionMock = {
