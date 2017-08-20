@@ -79,11 +79,11 @@ queue configuration has a priority in defining behaviour for pino-mq; if more th
 
 #### RabbitMQ specific options
 For RabbitMQ type there is an extra option: 
-* `--exchange`: if you want to use a specific exchange for your queues or you want to use topics instead of queues than you have to pass it to pino-mq configuration; topics are a more powerful distribution mechanism than queues and explaining it is beyond the scope of this module; (for reference [RabbitMQ Topics tutorial](https://www.rabbitmq.com/tutorials/tutorial-five-javascript.html)
+* `--exchange`: if you want to use a specific exchange for your queues or you want to use topics instead of queues than you have to pass it to pino-mq configuration; topics are a more powerful distribution mechanism than queues and explaining it is beyond the scope of this module ([RabbitMQ Topics tutorial](https://www.rabbitmq.com/tutorials/tutorial-five-javascript.html))
 
 
 ## Fields filtering
-in case is needed to filter log messages fields you can use fields option:
+in case is needed to filter log messages fields you can use `fields` option:
 * from command line:
     * `--fields "time,level,msg"`
 * from configuration json file:
