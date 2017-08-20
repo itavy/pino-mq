@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/itavy/pino-mq.svg?branch=initial_release)](https://travis-ci.org/itavy/pino-mq)
+[![Build Status](https://travis-ci.org/itavy/pino-mq.svg?branch=master)](https://travis-ci.org/itavy/pino-mq)
 # pino-mq
 Pino-mq will take all messages received on process.stdin and send them over a message bus using JSON serialization;
 
