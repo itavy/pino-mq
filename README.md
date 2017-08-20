@@ -43,6 +43,14 @@ options; `queueMap` option is available only in configuration json file;
 }
 ```
 
+## Broker connection
+* `uri` option will follow URI specification for defining connection to a host:
+
+    ```
+    <protocol>://[user[:password]@]host[:port][/path][?query]
+    ```
+    where `protocol`, `path` and `fragment` will be specific for each type of broker
+
 ## Queues configuration
 queue configuration has a priority in defining behaviour for pino-mq; if more than one is specified, configuration will take this precedence:
 
