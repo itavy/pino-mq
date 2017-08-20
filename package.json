@@ -1,6 +1,6 @@
 {
   "name": "pino-mq",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Pinno Transport over MQ",
   "main": "index.js",
   "scripts": {
