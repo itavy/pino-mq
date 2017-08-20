@@ -1,47 +1,64 @@
 {
- "name": "pino-mq",
- "version": "0.0.0",
- "description": "Pinno Transport over MQ",
- "main": "index.js",
- "scripts": {
-  "test": "./node_modules/.bin/mocha",
-  "coverage": "./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha",
-  "coverage:check": "./node_modules/.bin/istanbul check-coverage",
-  "test:check-style": "./node_modules/.bin/eslint index.js \"lib/**/*.js\" \"test/**/*.js\"",
-  "docs": "./node_modules/.bin/jsdoc -c jsdoc.json",
-  "pretest": "npm run test:check-style"
- },
- "repository": {
-  "type": "git",
-  "url": "git+https://git@github.com/itavy/pino-mq.git"
- },
- "keywords": [
-  "pino",
-  "mq",
-  "log",
-  "fast",
-  "rabbitmq"
- ],
- "author": "Octavian Ionescu <itavyg@gmail.com> (https://github.com/itavy)",
- "license": "MIT",
- "bugs": {
-  "url": "https://github.com/itavy/pino-mq/issues"
- },
- "homepage": "https://github.com/itavy/pino-mq#readme",
- "devDependencies": {
-  "@itavy/test-utilities": "^2.0.0",
-  "eslint": "^4.3.0",
-  "eslint-config-airbnb": "^15.1.0",
-  "eslint-plugin-import": "^2.7.0",
-  "eslint-plugin-jsx-a11y": "^5.1.1",
-  "eslint-plugin-react": "^7.1.0",
-  "eyes": "^0.1.8",
-  "jaguarjs-jsdoc": "^1.1.0",
-  "jsdoc": "^3.5.3",
-  "jsdoc-to-markdown": "^3.0.0",
-  "pre-commit": "^1.2.2"
- },
- "dependencies": {
-  "semver": "^5.4.1"
- }
+  "name": "pino-mq",
+  "version": "0.0.0",
+  "description": "Pinno Transport over MQ",
+  "main": "index.js",
+  "scripts": {
+    "test": "./node_modules/.bin/mocha",
+    "test:e2e:prereq": "rabbitmqadmin import ./test/Docker/rabbitmq-definitions.json",
+    "test:e2e": "npm run test:e2e:rabbitmq",
+    "test:e2e:rabbitmq": "./node_modules/.bin/tap -b -t 5 ./test/e2e/RabbitMQ/*.js",
+    "test:e2e:rabbitmq:coverage": "./node_modules/.bin/tap -b --cov --coverage-report=html -t 5 ./test/e2e/RabbitMQ/*.js",
+    "coverage": "npm run test:check-style && ./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha",
+    "coverage:check": "./node_modules/.bin/istanbul check-coverage",
+    "test:check-style": "./node_modules/.bin/eslint index.js \"lib/*.js\" pino-mq.js \"test/**/*.js\"",
+    "docs": "./node_modules/.bin/jsdoc -c jsdoc.json",
+    "pretest": "npm run test:check-style"
+  },
+  "pre-commit": [
+    "test"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://git@github.com/itavy/pino-mq.git"
+  },
+  "keywords": [
+    "pino",
+    "mq",
+    "log",
+    "fast",
+    "rabbitmq"
+  ],
+  "author": "Octavian Ionescu <itavyg@gmail.com> (https://github.com/itavy)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/itavy/pino-mq/issues"
+  },
+  "homepage": "https://github.com/itavy/pino-mq#readme",
+  "devDependencies": {
+    "@itavy/test-utilities": "^2.1.0",
+    "eslint": "^4.3.0",
+    "eslint-config-airbnb": "^15.1.0",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-jsx-a11y": "^5.1.1",
+    "eslint-plugin-react": "^7.1.0",
+    "eyes": "^0.1.8",
+    "jaguarjs-jsdoc": "^1.1.0",
+    "jsdoc": "^3.5.3",
+    "jsdoc-to-markdown": "^3.0.0",
+    "pino": "^4.7.1",
+    "pre-commit": "^1.2.2"
+  },
+  "dependencies": {
+    "amqplib": "^0.5.1",
+    "fast-safe-stringify": "^1.2.0",
+    "nopt": "^4.0.1",
+    "pump": "^1.0.2",
+    "semver": "^5.4.1",
+    "split2": "^2.1.1",
+    "through2": "^2.0.3"
+  },
+  "bin": {
+    "pino-mq": "./pino-mq.js"
+  }
 }

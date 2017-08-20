@@ -1,0 +1,9 @@
+{
+ "type": "RABBITMQ",
+ "uri": "amqp://pinomqusr:pinomqpwd@localhost/pino-mq",
+ "exchange": "",
+ "queue": "pino-mq-queue",
+ "queuePattern": null,
+ "queueMap": null,
+ "fields": []
+}

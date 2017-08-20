@@ -24,3 +24,5 @@ typings/
 yarn-debug.log*
 yarn-error.log*
 .yarn-integrity
+test*.js
+/pino-mq.json

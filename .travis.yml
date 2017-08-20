@@ -1,0 +1,22 @@
+sudo: required
+dist: trusty
+
+language: node_js
+
+node_js:
+  - "6"
+
+services:
+  - rabbitmq
+
+before_script:
+  - sudo rabbitmq-plugins enable rabbitmq_management
+  - wget http://guest:guest@localhost:15672/cli/rabbitmqadmin
+  - sudo chmod +x rabbitmqadmin
+  - sudo mv rabbitmqadmin /usr/local/bin/
+
+script:
+  - npm run coverage
+  - npm run coverage:check
+  - npm run test:e2e:prereq
+  - npm run test:e2e
