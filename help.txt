@@ -1,7 +1,7 @@
  Flags
   -t  | --type              MQ type of transport to be used: 'RABBITMQ'
   -u  | --uri               uri for connecting to broker
-  -e  | --exchange          echange name to be used in case of rabbitmq transport
+  -e  | --exchange          exchange name to be used in case of rabbitmq transport
   -q  | --queue             queue to be used for sending messages
   -qp | --queuePattern      queuePattern  to be used for sending messages
   -f  | --fields            comma separated fields for filtering messages before sending
